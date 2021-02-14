@@ -13,41 +13,44 @@ import Villains from './components/villains/Villains.vue'
  */
 
 export const routes = [
-    { path:'', name:'home', component: Home, title: 'Home', menu: true },
+    { path:'', name:'home', component: Home, title: 'Home', menu: true, icon: 'el-icon-s-home' },
     { 
         path:'/create',
         name:'create',
         component: CreateIndex,
         title: 'Create',
         menu: true,
-        icon: 'fas fa-shopping-cart',
+        icon: 'el-icon-document',
         children: [
             {
                 path: '/create/character',
                 name: 'createchar',
                 component: Character,
                 title: 'Create Character',
-                menu: true
+                menu: true,
+                icon: 'el-icon-document'
             },
             {
                 path: '/create/race',
                 name: 'createrace',
                 component: Race,
                 title: 'Create Race',
-                menu: true
+                menu: true,
+                icon: 'el-icon-s-custom'
             },
             {
                 path: '/create/class',
                 name: 'createclass',
                 component: Class,
                 title: 'Create Class',
-                menu: true
+                menu: true,
+                icon: 'el-icon-s-cooperation'
             },
             
         ],
         
     },
-    { path:'/play', name:'play', component: Play, title: 'Play', menu: true },
+    { path:'/play', name:'play', component: Play, title: 'Play', menu: true, icon: 'el-icon-position' },
     { path:'*', component: Home, menu: false }
     
     /*

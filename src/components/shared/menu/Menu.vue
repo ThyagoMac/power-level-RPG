@@ -5,18 +5,29 @@
         mode="horizontal"
         background-color="#545c64"
         text-color="#fff"
-        active-text-color="#ffd04b">
+        active-text-color="#ffd04b"
+        @open="handleOpen"
+        @close="handleClose"
+    >
         <el-menu-item v-for="route in menuroutes" :key="route.title" :index="route.title">
             <router-link
                 :to="route.path ? route.path : '/'" 
                 v-if="route.menu && !route.children"
             >
+                <i v-if="route.icon" :class="route.icon"></i>
                 {{ route.title }}
             </router-link>
+            
             <el-submenu :index="route.title" v-if="route.children && route.children.length">
-                <template slot="title">{{ route.title }}</template>
+                <template slot="title">
+                    <!-- <i v-if="route.icon" :class="route.icon"></i> -->
+                    {{ route.title }}
+                </template>
                 <el-menu-item v-for="(routeChildren, indexChildren) in route.children" :key="indexChildren" :index="indexChildren.title +'-'+ indexChildren">
-                    <router-link :to="routeChildren.path" class="text-dark">{{ routeChildren.title }}</router-link>
+                    <router-link :to="routeChildren.path" class="text-dark">
+                        <i v-if="routeChildren.icon" :class="routeChildren.icon"></i>
+                        {{ routeChildren.title }}
+                    </router-link>
                 </el-menu-item>
             </el-submenu>
             <!-- <a
@@ -58,6 +69,14 @@ export default {
             required: true
         }
     },
+    methods: {
+        handleOpen(key, keyPath) {
+            console.log(key, keyPath);
+        },
+        handleClose(key, keyPath) {
+            console.log(key, keyPath);
+        }
+    }
 }
 </script>
 

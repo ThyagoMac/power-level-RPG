@@ -40,13 +40,13 @@
                 <el-col :sm="24" :md="5" class="my-1">
                     <div>
                         <el-tag class="tag-label" type="success" size="medium">HP</el-tag>
-                        <el-input-number size="mini" v-model="race.hp" :min="0" :max="5" id="hp" />
+                        <el-input-number size="mini" v-model="race.hp" :min="0" :max="25" id="hp" />
                     </div>
                 </el-col>
                 <el-col :sm="24" :md="5" class="my-1">
                     <div>
                         <el-tag class="tag-label" size="medium">Mana</el-tag>
-                        <el-input-number size="mini" v-model="race.mana" :min="0" :max="5" id="mana" />
+                        <el-input-number size="mini" v-model="race.mana" :min="0" :max="25" id="mana" />
                     </div>
                 </el-col>
                 <el-col :sm="24" :md="4" class="my-1">

@@ -4,14 +4,14 @@
 
         <el-form ref="form" :model="character" label-width="15%" class="form-center mt-4">
             <el-row :gutter="30">
-                <el-col :span="12" >
+                <el-col :sm="24" :md="12">
                     <div>
                         <el-input :span="8" placeholder="Name" v-model="input1" id="name">
-                            <label for="name" slot="prepend">Name</label>
+                            <label for="name" slot="prepend">Name1</label>
                         </el-input>
                     </div>
                 </el-col>
-                <el-col :span="12">
+                <el-col :sm="24" :md="12">
                     <div>
                         <el-input :span="8" placeholder="Name" v-model="input1" id="name">
                             <label for="name" slot="prepend">Name</label>
@@ -19,9 +19,20 @@
                     </div>
                 </el-col>
             </el-row>
-
-
-            <!-- 
+            name: '',
+                power: 1,
+                speed: 1,
+                energy: 1,
+                spirit: 1,
+                xp: 1,
+                hp: 100,
+                mana: 100,
+                bio: '',
+                url: '',
+                aura: false,
+                transform: 0,
+                haveKaioken: false,
+                kaioken: 0
             <el-form-item label="Names" for="names">
                 <el-input id="names" v-model="character.name"></el-input>
             </el-form-item>
@@ -113,11 +124,16 @@
                 speed: 1,
                 energy: 1,
                 spirit: 1,
-                xp: 1,
+                mana: 0,
                 hp: 100,
-                mana: 100,
+                class: '',
+                race_id: '',
+                aura: false,
+                transform: 0,
+                have_rage: false,
+                rage: 0,
                 bio: '',
-                url: ''
+                url: '',
             },
             heroine: {
                 name: '',
@@ -136,7 +152,7 @@
     },
     methods: {
         onSubmit() {
-        console.log(this.heroine);
+        console.log(this.character);
         }
     }
     }

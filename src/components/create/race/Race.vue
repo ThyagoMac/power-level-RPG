@@ -2,114 +2,105 @@
     <div>
         <h1>New Race</h1>
 
-        <el-form ref="form" :model="heroine" label-width="15%" class="form-center">
-            <el-form-item label="Name">
-                <el-input v-model="heroine.name"></el-input>
-            </el-form-item>
-            <el-form-item label="Heroine Tier" >
-                <el-select v-model="heroine.region" placeholder="Please Select The Tier" style="width: 100%">
-                <el-option label="T1" value="t1"></el-option>
-                <el-option label="T2" value="t2"></el-option>
-                <el-option label="T3" value="t3"></el-option>
-                <el-option label="T4" value="t4"></el-option>
-                </el-select>
-            </el-form-item>
+        <el-form ref="form" :model="race" label-width="15%" class="form-center mt-4">
+            <el-row :gutter="30" class="my-1">
+                <el-col :sm="24" :md="12">
+                    <div>
+                        <el-input placeholder="Name" v-model="race.name" id="name">
+                            <label for="name" slot="prepend">Name</label>
+                        </el-input>
+                    </div>
+                </el-col>
+                <el-col :sm="24" :md="12">
+                    <div>
+                        <el-input placeholder="https://" v-model="race.url" id="url">
+                            <label for="url" slot="prepend">Url</label>
+                        </el-input>
+                    </div>
+                </el-col>
+            </el-row>
 
-            <el-form-item label="Power">
-                <el-col :span="8">
-                    <el-input-number v-model="heroine.power" controls-position="right" :min="1" :max="10" style="width: 100%"></el-input-number>
+            <el-row :gutter="30" class="my-1">
+                <el-col :sm="24" :md="5">
+                    <div>
+                        <el-tag class="tag-label" type="success" size="medium">HP</el-tag>
+                        <el-input-number size="mini" v-model="race.hp" :min="0" :max="5" id="hp" />
+                    </div>
                 </el-col>
-                <el-col class="line" :span="8">Speed</el-col>
-                <el-col :span="8">
-                    <el-input-number v-model="heroine.speed" controls-position="right" :min="1" :max="10" style="width: 100%"></el-input-number>
+                <el-col :sm="24" :md="5">
+                    <div>
+                        <el-tag class="tag-label" size="medium">Mana</el-tag>
+                        <el-input-number size="mini" v-model="race.mana" :min="0" :max="5" id="mana" />
+                    </div>
                 </el-col>
-            </el-form-item>
-            <el-form-item label="Skill">
-                <el-col :span="8">
-                    <el-input-number v-model="heroine.skill" controls-position="right" :min="1" :max="10" style="width: 100%"></el-input-number>
+                <el-col :sm="24" :md="4">
+                    <div>
+                        <el-tag class="tag-label" size="medium">Energy</el-tag>
+                        <el-input-number size="mini" v-model="race.energy" :min="0" :max="5" id="energy" />
+                    </div>
                 </el-col>
-                <el-col class="line" :span="8">Mental</el-col>
-                <el-col :span="8">
-                    <el-input-number v-model="heroine.mental" controls-position="right" :min="1" :max="10" style="width: 100%"></el-input-number>
+                <el-col :sm="24" :md="5">
+                    <div>
+                        <el-tag class="tag-label" size="medium">Spirit</el-tag>
+                        <el-input-number size="mini" v-model="race.spirit" :min="0" :max="5" id="spirit" />
+                    </div>
                 </el-col>
-            </el-form-item>
-            <el-form-item label="Expereince">
-                <el-col :span="8">
-                    <el-input-number v-model="heroine.experience" controls-position="right" :min="1" :max="10" style="width: 100%"></el-input-number>
+                <el-col :sm="24" :md="5">
+                    <div>
+                        <!-- <el-input class="label-prepend" style="width: 1px; margin-left: -30.3px;">
+                            <label for="speed" slot="prepend">speed</label>
+                        </el-input> -->
+                        <el-tag class="tag-label" type="warning" size="medium">Speed</el-tag>
+                        <el-input-number size="mini" v-model="race.speed" :min="0" :max="5" id="speed" />
+                    </div>
                 </el-col>
-            </el-form-item>
+            </el-row>
 
-            <hr>
-            <el-form-item label="Buffs">
-                <el-checkbox-group v-model="heroine.buff">
-                <el-checkbox label="Fire Expert" name="buff"></el-checkbox>
-                <el-checkbox label="Air Expert" name="buff"></el-checkbox>
-                <el-checkbox label="Earth Expert" name="buff"></el-checkbox>
-                <el-checkbox label="Water Expert" name="buff"></el-checkbox>
-                <el-checkbox label="Flyer" name="buff"></el-checkbox>
-                <el-checkbox label="Well Experienced" name="buff"></el-checkbox>
-                <el-checkbox label="Combatent" name="buff"></el-checkbox>
-                </el-checkbox-group>
-            </el-form-item>
-            <hr>
-            <el-form-item label="De-Buffs">
-                <el-checkbox-group v-model="heroine.debuff">
-                <el-checkbox label="Fire Inexperienced" name="debuff"></el-checkbox>
-                <el-checkbox label="Air Inexperienced" name="debuff"></el-checkbox>
-                <el-checkbox label="Earth Inexperienced" name="debuff"></el-checkbox>
-                <el-checkbox label="Water Inexperienced" name="debuff"></el-checkbox>
-                <el-checkbox label="Bad Experiences" name="debuff"></el-checkbox>
-                <el-checkbox label="Bad Combatent" name="debuff"></el-checkbox>
-                <el-checkbox label="Easily to Drain" name="debuff"></el-checkbox>
-                <el-checkbox label="Drainable" name="debuff"></el-checkbox>
-                </el-checkbox-group>
-            </el-form-item>
-            <hr>
-            <el-form-item label="URL">
-                <el-col :span="8">
-                    <el-input v-model="heroine.url"></el-input>
+            <!-- <el-row :gutter="30" class="my-1">
+                <el-col :sm="24" :md="12">
+                    <div>
+                        <el-tag type="success" size="medium">HP</el-tag>
+                        <el-input-number size="mini" v-model="race.hp" :min="0" :max="5" id="hp" />
+                    </div>
                 </el-col>
-                    <div class="demo-image__preview">
-                        <el-image 
-                            style="width: 15%"
-                            :src="heroine.url">
-                        </el-image>
-                    </div>   
-            </el-form-item>
-            <el-form-item label="BIO">
-                <el-input type="textarea" v-model="heroine.desc"></el-input>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="onSubmit">Create</el-button>
-                <el-button>Cancel</el-button>
-            </el-form-item>
-            </el-form>
+                <el-col :sm="24" :md="12">
+                    <div>
+                        <el-tag size="medium">Mana</el-tag>
+                        <el-input-number size="mini" v-model="race.mana" :min="0" :max="5" id="mana" />
+                    </div>
+                </el-col>
+            </el-row> -->
+        </el-form>
 </div>
 </template>
 
 <script>
-  export default {
+    export default {
     data() {
-      return {
-        heroine: {
-          name: '',
-          power: 1,
-          speed: 1,
-          skill: 1,
-          mental: 1,
-          experience: 1,
-          buff: [],
-          debuff: [],
-          resource: '',
-          desc: '',
-          url: ''
+        return {
+            race: {
+                name: '',
+                speed: 0,
+                energy: 0,
+                spirit: 0,
+                mana: 0,
+                hp: 0,
+                bio: '',
+                url: '',
+
+            },
         }
-      }
     },
     methods: {
-      onSubmit() {
-        console.log(this.heroine);
-      }
+        onSubmit() {
+        console.log(this.race);
+        }
     }
-  }
+    }
 </script>
+
+<style scoped>
+    .tag-label {
+        width: 130px;
+    }
+</style>

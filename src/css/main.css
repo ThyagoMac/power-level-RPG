@@ -37,7 +37,7 @@
 [class*=" el-icon-"],
 [class^="el-icon-"] {
   font-family: element-icons !important;
-  speak: none;
+  /* speak: none; */
   font-style: normal;
   font-weight: 400;
   font-variant: normal;
@@ -1111,6 +1111,7 @@
 .el-dialog,
 .el-pager li {
   background: #fff;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
 .el-pagination.is-background.el-pagination--small .btn-next,
@@ -1135,6 +1136,7 @@
 }
 .el-date-table,
 .el-table th {
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
 }
@@ -1329,6 +1331,7 @@
 .el-dropdown-menu,
 .el-menu--collapse .el-submenu .el-menu {
   z-index: 10;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .el-autocomplete-suggestion__wrap {
@@ -1652,6 +1655,7 @@
   height: 56px;
   line-height: 56px;
   position: relative;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
   white-space: nowrap;
   list-style: none;
@@ -2605,6 +2609,7 @@
 }
 .el-picker-panel,
 .el-table-filter {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .el-table__body-wrapper
@@ -2726,6 +2731,7 @@
 .el-date-table td,
 .el-date-table td div {
   height: 30px;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
 .el-table-filter__list {
@@ -3274,7 +3280,7 @@
   color: #c0c4cc;
   width: 25px;
   display: inline-block;
-  float: right;
+  /* float: right; */
   line-height: 32px;
 }
 .el-range-editor.el-input__inner {
@@ -3376,6 +3382,7 @@
 }
 .el-popover,
 .el-time-panel {
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 .el-picker-panel__body-wrapper::after,
@@ -3576,6 +3583,7 @@
 }
 .el-slider__button,
 .el-slider__button-wrapper {
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -4165,6 +4173,7 @@
 }
 .el-collapse-item__arrow,
 .el-tabs__nav {
+  transition: -webkit-transform 0.3s;
   -webkit-transition: -webkit-transform 0.3s;
 }
 .el-tabs__new-tab .el-icon-plus {
@@ -5454,6 +5463,7 @@
 }
 .el-slider__button-wrapper,
 .el-slider__stop {
+  transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
   position: absolute;
 }
@@ -5513,6 +5523,7 @@
 }
 .el-image-viewer__btn,
 .el-step__icon-inner {
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -5859,6 +5870,7 @@
 }
 .el-upload--picture-card,
 .el-upload-dragger {
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
   cursor: pointer;
 }
@@ -8300,7 +8312,7 @@
   display: inline-block;
   width: 70px;
   height: 70px;
-  float: left;
+  /* float: left; */
   position: relative;
   z-index: 1;
   margin-left: -80px;
@@ -8480,7 +8492,7 @@
   line-height: 1;
 }
 .el-progress__text i {
-  vertical-align: middle;
+  /* vertical-align: middle; */
   display: block;
 }
 .el-progress--circle,
@@ -9377,13 +9389,13 @@
   -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
   transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
-.el-zoom-in-center-enter-active,
-.el-zoom-in-center-leave-active {
+.el-zoom-in-center-enter-active/* ,
+.el-zoom-in-center-leave-active */ {
   -webkit-transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
   transition: all 0.3s cubic-bezier(0.55, 0, 0.1, 1);
 }
-.el-zoom-in-center-enter,
-.el-zoom-in-center-leave-active {
+.el-zoom-in-center-enter/* ,
+.el-zoom-in-center-leave-active */ {
   opacity: 0;
   -webkit-transform: scaleX(0);
   transform: scaleX(0);
@@ -9538,6 +9550,7 @@
 }
 .el-cascader__tags,
 .el-tag {
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
 .el-collapse-item__content {
@@ -10650,6 +10663,7 @@
 .el-input__suffix {
   position: absolute;
   top: 0;
+  transition: all 0.3s;
   -webkit-transition: all 0.3s;
   height: 100%;
   color: #c0c4cc;
@@ -11076,6 +11090,7 @@
 }
 .el-aside,
 .el-header {
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
 .el-container.is-vertical {
@@ -11096,6 +11111,7 @@
 }
 .el-footer,
 .el-main {
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
 }
 .el-main {
@@ -11427,6 +11443,7 @@
 }
 .el-button,
 .el-checkbox {
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -12235,6 +12252,7 @@
 .el-checkbox-button__inner,
 .el-radio {
   font-weight: 500;
+  user-select: none;
   -moz-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
@@ -12797,6 +12815,7 @@
 }
 .el-avatar,
 .el-drawer {
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
   overflow: hidden;
 }
@@ -12884,7 +12903,7 @@
 .el-avatar > img {
   display: block;
   height: 100%;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 .el-drawer,
 .el-drawer__header {

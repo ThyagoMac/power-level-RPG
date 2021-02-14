@@ -20,7 +20,7 @@ export const routes = [
         component: CreateIndex,
         title: 'Create',
         menu: true,
-        icon: 'el-icon-document',
+        icon: 'el-icon-s-order',
         children: [
             {
                 path: '/create/character',

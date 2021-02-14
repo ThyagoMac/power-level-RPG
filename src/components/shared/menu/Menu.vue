@@ -20,8 +20,8 @@
             
             <el-submenu :index="route.title" v-if="route.children && route.children.length">
                 <template slot="title">
-                    <!-- <i v-if="route.icon" :class="route.icon"></i> -->
                     {{ route.title }}
+                    <!-- <i v-if="route.icon" :class="route.icon"></i> -->
                 </template>
                 <el-menu-item v-for="(routeChildren, indexChildren) in route.children" :key="indexChildren" :index="indexChildren.title +'-'+ indexChildren">
                     <router-link :to="routeChildren.path" class="text-dark">
@@ -91,5 +91,8 @@ export default {
     .el-menu-item {
         padding: 0px !important;
     }
-
+    a > i {
+        margin-right: 0px !important;
+        margin-bottom: 5px;
+    }
 </style>

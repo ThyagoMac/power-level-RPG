@@ -6,14 +6,14 @@
             <el-row :gutter="30">
                 <el-col :sm="24" :md="12">
                     <div>
-                        <el-input :span="8" placeholder="Name" v-model="input1" id="name">
+                        <el-input :span="8" placeholder="Name" v-model="character.name" id="name">
                             <label for="name" slot="prepend">Name1</label>
                         </el-input>
                     </div>
                 </el-col>
                 <el-col :sm="24" :md="12">
                     <div>
-                        <el-input :span="8" placeholder="Name" v-model="input1" id="name">
+                        <el-input :span="8" placeholder="Name" v-model="character.name" id="name">
                             <label for="name" slot="prepend">Name</label>
                         </el-input>
                     </div>
@@ -33,6 +33,7 @@
                 transform: 0,
                 haveKaioken: false,
                 kaioken: 0
+                <!-- 
             <el-form-item label="Names" for="names">
                 <el-input id="names" v-model="character.name"></el-input>
             </el-form-item>
@@ -109,8 +110,8 @@
             <el-form-item>
                 <el-button type="primary" @click="onSubmit">Create</el-button>
                 <el-button>Cancel</el-button>
-            </el-form-item>
-            </el-form>
+            </el-form-item>-->
+            </el-form> 
 </div>
 </template>
 

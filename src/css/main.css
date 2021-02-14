@@ -13280,3 +13280,7 @@
 body {
   margin: 8px 0;
 }
+.el-submenu__icon-arrow {
+  top: 53% !important;
+  right: 5px !important;
+}

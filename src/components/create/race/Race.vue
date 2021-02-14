@@ -110,11 +110,14 @@
                     url: '',
                     urlArray: [''],
                 },
+                races: [],
             }
         },
         methods: {
             onSubmit () {
-                console.log(this.race);
+                this.races.push(this.race);
+                localStorage.setItem('races', JSON.stringify(this.races));
+                console.log(localStorage.getItem('races'));
             },
             reloadUrl () {
                 this.race.urlArray = [];

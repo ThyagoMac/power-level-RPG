@@ -3,7 +3,7 @@
         <h1>New Race</h1>
 
         <el-form ref="form" :model="race" label-width="15%" class="form-center mt-4">
-            <div class="demo-image__preview">
+            <div class="image__preview">
                 <el-image 
                     style="width: 100px; height: 100px"
                     :src="race.url"
@@ -40,55 +40,47 @@
                 <el-col :sm="24" :md="5" class="my-1">
                     <div>
                         <el-tag class="tag-label" type="success" size="medium">HP</el-tag>
-                        <el-input-number size="mini" v-model="race.hp" :min="-25" :max="25" :step="5" id="hp" />
+                        <el-input-number size="mini" v-model="race.hp" :min="-25" :max="25" :step="5" id="hp" :disabled=" totalPoints < 1 ? true : false" />
                     </div>
                 </el-col>
                 <el-col :sm="24" :md="5" class="my-1">
                     <div>
                         <el-tag class="tag-label" size="medium">Mana</el-tag>
-                        <el-input-number size="mini" v-model="race.mana" :min="-25" :max="25" :step="5" id="mana" />
+                        <el-input-number size="mini" v-model="race.mana" :min="-25" :max="25" :step="5" id="mana" :disabled=" totalPoints < 1 ? true : false"/>
                     </div>
                 </el-col>
                 <el-col :sm="24" :md="4" class="my-1">
                     <div>
                         <el-tag class="tag-label" size="medium">Energy</el-tag>
-                        <el-input-number size="mini" v-model="race.energy" :min="0" :max="5" id="energy" />
+                        <el-input-number size="mini" v-model="race.energy" :min="0" :max="5" id="energy" :disabled=" totalPoints < 1 ? true : false"/>
                     </div>
                 </el-col>
                 <el-col :sm="24" :md="5" class="my-1">
                     <div>
                         <el-tag class="tag-label" size="medium">Spirit</el-tag>
-                        <el-input-number size="mini" v-model="race.spirit" :min="0" :max="5" id="spirit" />
+                        <el-input-number size="mini" v-model="race.spirit" :min="0" :max="5" id="spirit" :disabled=" totalPoints < 1 ? true : false"/>
                     </div>
                 </el-col>
                 <el-col :sm="24" :md="5" class="my-1">
                     <div>
                         <el-tag class="tag-label" type="warning" size="medium">Speed</el-tag>
-                        <el-input-number size="mini" v-model="race.speed" :min="0" :max="5" id="speed" />
+                        <el-input-number size="mini" v-model="race.speed" :min="0" :max="5" id="speed" :disabled=" totalPoints < 1 ? true : false"/>
                     </div>
                 </el-col>
             </el-row>
+            <h5> <a @click="race.speed = 0, race.energy = 0, race.spirit = 0, race.mana = 0, race.hp = 0"> Pontos Restantes:</a> {{ totalPoints }}</h5>
             <hr>
             <el-row :gutter="30" class="my-3">
                 <el-form-item label="BIO">
                     <el-input type="textarea" v-model="race.bio"></el-input>
                 </el-form-item>
             </el-row>
+            <hr>
             <el-row :gutter="30" class="my-3">
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">Finish</el-button>
                     <el-button 
-                        @click="race={
-                            name: '',
-                            speed: 0,
-                            energy: 0,
-                            spirit: 0,
-                            mana: 0,
-                            hp: 0,
-                            bio: '',
-                            url: '',
-                            urlArray: [],
-                        }">Reset</el-button>
+                        @click="race=newRace">Reset</el-button>
                 </el-form-item>
             </el-row>
         </el-form>
@@ -110,13 +102,34 @@
                     url: '',
                     urlArray: [''],
                 },
+                newRace: {
+                    name: '',
+                    speed: 0,
+                    energy: 0,
+                    spirit: 0,
+                    mana: 0,
+                    hp: 0,
+                    bio: '',
+                    url: '',
+                    urlArray: [],
+                },
                 races: [],
+                left_points: 10,
             }
         },
         methods: {
             onSubmit () {
-                this.races.push(this.race);
-                localStorage.setItem('races', JSON.stringify(this.races));
+                if (localStorage.getItem('races')) {
+                    let upd = JSON.parse(localStorage.getItem('races'))
+                    upd.push(this.race)
+                    localStorage.setItem('races', JSON.stringify(upd));
+
+                    this.race = this.newRace;
+                } else {
+                    this.races.push(this.race);
+                    localStorage.setItem('races', JSON.stringify(this.races));
+                    this.race = this.newRace;
+                }
                 console.log(localStorage.getItem('races'));
             },
             reloadUrl () {
@@ -124,6 +137,11 @@
                 this.race.urlArray.push(this.race.url);
             }
         },
+        computed: {
+            totalPoints () {
+                return (this.left_points - (this.race.speed + this.race.energy + this.race.spirit)) - ((this.race.hp/5) + (this.race.mana/5));                
+            }
+        },  
     }
 </script>
 

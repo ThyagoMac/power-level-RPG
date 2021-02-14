@@ -2,7 +2,7 @@
   <div id="app">
     <my-menu :menuroutes="routes" />
 
-    <transition name='page'>
+    <transition name='el-zoom-in-center'>
       <router-view></router-view>
     </transition>
   </div>

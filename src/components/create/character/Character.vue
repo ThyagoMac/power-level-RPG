@@ -2,102 +2,74 @@
     <div>
         <h1>New Character</h1>
 
-        <el-form ref="form" :model="race" label-width="15%" class="form-center mt-4">
-            <div class="image__preview">
-                <el-image 
-                    style="width: 100px; height: 100px"
-                    :src="race.url"
-                    :preview-src-list="race.urlArray"
-                    fit="cover"
-                    lazy
-                >
-                    <div slot="placeholder" class="image-slot">
-                        Loading<span class="dot">...</span>
-                    </div>
-                    <div slot="error" class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                    </div>
-                </el-image>
-            </div>
-            <el-row :gutter="30" class="my-1">
-                <el-col :sm="24" :md="12">
-                    <div>
-                        <el-input placeholder="Name" v-model="race.name" id="name">
-                            <label for="name" slot="prepend">Name</label>
-                        </el-input>
-                    </div>
-                </el-col>
-                <el-col :sm="24" :md="12">
-                    <div>
-                        <el-input placeholder="https://" v-model.lazy="race.url" @change="reloadUrl" id="url">
-                            <label for="url" slot="prepend">Url</label>
-                        </el-input>
-                    </div>
-                </el-col>
-            </el-row>
-
+        <el-form ref="form" :model="character" label-width="15%" class="form-center mt-4">
+            <avatar-image
+                :avatar = character.url
+                :avatarGalery = character.urlArray
+            />
+            <creat-header 
+                :av = character
+            />
+            <creat-attributes
+                :av = character
+            />
+            
             <el-row :gutter="30" class="my-3">
-                <el-col :sm="24" :md="4" class="my-1">
-                    <div>
-                        <el-tag class="tag-label" type="success" size="medium">HP</el-tag>
-                        <el-input-number size="mini" v-model="race.hp" :min="-25" :max="25" :step="5" id="hp" :disabled=" totalPoints < 1 ? true : false" />
-                    </div>
+                <el-col :sm="24" :md="12" class="my-1">
+                    <el-select v-model="character.race" clearable placeholder="Select Race">
+                        <el-option
+                            v-for="item in races"
+                            :key="item.name"
+                            :label="item.name"
+                            :value="item.name">
+                        </el-option>
+                    </el-select>
                 </el-col>
-                <el-col :sm="24" :md="4" class="my-1">
-                    <div>
-                        <el-tag class="tag-label" size="medium">Mana</el-tag>
-                        <el-input-number size="mini" v-model="race.mana" :min="-25" :max="25" :step="5" id="mana" :disabled=" totalPoints < 1 ? true : false"/>
-                    </div>
-                </el-col>
-                <el-col :sm="24" :md="4" class="my-1">
-                    <div>
-                        <el-tag class="tag-label" size="medium">Energy</el-tag>
-                        <el-input-number size="mini" v-model="race.energy" :min="0" :max="5" id="energy" :disabled=" totalPoints < 1 ? true : false"/>
-                    </div>
-                </el-col>
-                <el-col :sm="24" :md="4" class="my-1">
-                    <div>
-                        <el-tag class="tag-label" size="medium">Spirit</el-tag>
-                        <el-input-number size="mini" v-model="race.spirit" :min="0" :max="5" id="spirit" :disabled=" totalPoints < 1 ? true : false"/>
-                    </div>
-                </el-col>
-                <el-col :sm="24" :md="4" class="my-1">
-                    <div>
-                        <el-tag class="tag-label" type="warning" size="medium">Speed</el-tag>
-                        <el-input-number size="mini" v-model="race.speed" :min="0" :max="5" id="speed" :disabled=" totalPoints < 1 ? true : false"/>
-                    </div>
-                </el-col>
-                <el-col :sm="24" :md="4" class="my-1">
-                    <div>
-                        <el-tag class="tag-label" type="success" size="medium">Regeneration</el-tag>
-                        <el-input-number size="mini" v-model="race.regen" :min="0" :max="10" :step="10" id="regen" :disabled=" totalPoints < 1 ? true : false"/>
-                    </div>
+                <el-col :sm="24" :md="12" class="my-1">
+                    <el-select v-model="character.classe" clearable placeholder="Select Class">
+                        <el-option
+                            v-for="item in classes"
+                            :key="item.name"
+                            :label="item.name"
+                            :value="item.name">
+                        </el-option>
+                    </el-select>
                 </el-col>
             </el-row>
-            <h5> <a @click="race.speed = 0, race.energy = 0, race.spirit = 0, race.mana = 0, race.hp = 0, race.regen = 0"> Pontos Restantes:</a> {{ totalPoints }}</h5>
             <hr>
-            <el-row :gutter="30" class="my-3">
-                <el-form-item label="BIO">
-                    <el-input type="textarea" v-model="race.bio"></el-input>
-                </el-form-item>
-            </el-row>
+            <creat-bio 
+                :av = character
+            />
+            
             <hr>
             <el-row :gutter="30" class="my-3">
                 <el-form-item>
                     <el-button type="primary" @click="onSubmit">Finish</el-button>
                     <el-button 
-                        @click="race=newRace">Reset</el-button>
+                        @click="character=newCharacter">Reset</el-button>
                 </el-form-item>
             </el-row>
         </el-form>
-</div>
+    </div>
 </template>
 
 <script>
+    import AvatarImage from "../../shared/AvatarImage"
+    import CreatAttributes from '../../shared/CreatAttributes.vue'
+    import CreatBio from '../../shared/CreatBio.vue'
+    import CreatHeader from '../../shared/CreatHeader.vue'
+
     export default {
+        components: {
+            AvatarImage,
+            CreatAttributes,
+            CreatBio,
+            CreatHeader,
+        },
         data() {
             return {
-                race: {
+                character: {
+                    bp: 1000,
                     name: '',
                     regen: 0,
                     speed: 0,
@@ -108,9 +80,14 @@
                     bio: '',
                     url: '',
                     urlArray: [''],
+                    has_rage: false,
+                    classe: '',
+                    race: '',
                 },
-                newRace: {
+                newCharacter: {
+                    bp: 1000,
                     name: '',
+                    regen: 0,
                     speed: 0,
                     energy: 0,
                     spirit: 0,
@@ -119,59 +96,63 @@
                     bio: '',
                     url: '',
                     urlArray: [],
+                    has_rage: false,
+                    classe: '',
+                    race: '',
                 },
-                character: {
-                    name: '',
-                    power: 1,
-                    regen: 0,
-                    speed: 1,
-                    energy: 1,
-                    spirit: 1,
-                    mana: 0,
-                    hp: 100,
-                    class: '',
-                    race_id: '',
-                    aura: false,
-                    transform: 0,
-                    have_rage: false,
-                    rage: 0,
-                    bio: '',
-                    url: '',
-                },
+                raceName: '',
+                classeName: '',
+                characters: [],
                 races: [],
+                classes: [],
                 left_points: 10,
+            }
+        },
+        beforeMount () {
+            if (localStorage.getItem('races')) {
+                this.races = JSON.parse(localStorage.getItem('races'))
+            } else {
+                //todo por as raças padroes aqui
+                this.races = []
+            }
+            if (localStorage.getItem('classes')) {
+                this.classes = JSON.parse(localStorage.getItem('classes'))
+            } else {
+                //todo por as raças padroes aqui
+                this.classes = []
             }
         },
         methods: {
             onSubmit () {
-                if (localStorage.getItem('races')) {
-                    let upd = JSON.parse(localStorage.getItem('races'))
-                    upd.push(this.race)
-                    localStorage.setItem('races', JSON.stringify(upd));
+                const race = this.races.filter(race => this.character.race == race.name)
+                this.character.race = race[0]
+                const classe = this.classes.filter(classe => this.character.classe == classe.name)
+                this.character.classe = classe[0]
+                if (localStorage.getItem('characters')) {
+                    let upd = JSON.parse(localStorage.getItem('characters'))
+                    upd.push(this.character)
+                    localStorage.setItem('characters', JSON.stringify(upd));
 
-                    this.race = this.newRace;
+                    this.character = this.newCharacter;
                 } else {
-                    this.races.push(this.race);
-                    localStorage.setItem('races', JSON.stringify(this.races));
-                    this.race = this.newRace;
+                    this.characters.push(this.character);
+                    localStorage.setItem('characters', JSON.stringify(this.characters));
+                    this.character = this.newCharacter;
                 }
-                console.log(localStorage.getItem('races'));
+                console.log(localStorage.getItem('characters'));
             },
             reloadUrl () {
-                this.race.urlArray = [];
-                this.race.urlArray.push(this.race.url);
+                /* this.character.urlArray = []; */
+                this.character.urlArray.push(this.character.url);
+            },
+            search (item) {
+                return item
             }
         },
         computed: {
             totalPoints () {
-                return (this.left_points - (this.race.speed + this.race.energy + this.race.spirit)) - ((this.race.hp/5) + (this.race.mana/5));                
+                return (this.left_points - (this.character.speed + this.character.energy + this.character.spirit)) - ((this.character.hp/5) + (this.character.mana/5)) - (this.character.regen);                
             }
-        },  
+        },
     }
 </script>
-
-<style scoped>
-    .tag-label {
-        width: 130px;
-    }
-</style>

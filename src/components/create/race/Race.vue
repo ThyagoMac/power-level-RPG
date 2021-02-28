@@ -1,41 +1,50 @@
 <template>
     <div>
         <h1>New Race</h1>
-
         <el-form ref="form" :model="race" label-width="15%" class="form-center mt-4">
-            <div class="image__preview">
-                <el-image 
-                    style="width: 100px; height: 100px"
-                    :src="race.url"
-                    :preview-src-list="race.urlArray"
-                    fit="cover"
-                    lazy
-                >
-                    <div slot="placeholder" class="image-slot">
-                        Loading<span class="dot">...</span>
-                    </div>
-                    <div slot="error" class="image-slot">
-                        <i class="el-icon-picture-outline"></i>
-                    </div>
-                </el-image>
-            </div>
-            <el-row :gutter="30" class="my-1">
-                <el-col :sm="24" :md="12">
-                    <div>
-                        <el-input placeholder="Name" v-model="race.name" id="name">
-                            <label for="name" slot="prepend">Name</label>
-                        </el-input>
-                    </div>
-                </el-col>
-                <el-col :sm="24" :md="12">
-                    <div>
-                        <el-input placeholder="https://" v-model.lazy="race.url" @change="reloadUrl" id="url">
-                            <label for="url" slot="prepend">Url</label>
-                        </el-input>
-                    </div>
-                </el-col>
+            <avatar-image
+                :avatar = race.url
+                :avatarGalery = race.urlArray
+            />
+            <creat-header 
+                :av = race
+            />
+            <creat-attributes
+                :av = race
+                :regen = true
+            />
+            <hr>
+            <creat-bio 
+                :av = race
+            />
+            <hr>
+            <el-row :gutter="30" class="my-3">
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">Finish</el-button>
+                    <el-button 
+                        @click="race=newRace">Reset</el-button>
+                </el-form-item>
             </el-row>
-
+        </el-form>
+        <!-- 
+        <el-row :gutter="30" class="my-1">
+            <el-col :sm="24" :md="12">
+                <div>
+                    <el-input placeholder="Name" v-model="race.name" id="name">
+                        <label for="name" slot="prepend">Name</label>
+                    </el-input>
+                </div>
+            </el-col>
+            <el-col :sm="24" :md="12">
+                <div>
+                    <el-input placeholder="https://" v-model.lazy="race.url" @change="reloadUrl" id="url">
+                        <label for="url" slot="prepend">Url</label>
+                    </el-input>
+                </div>
+            </el-col>
+        </el-row> 
+    
+        <div>
             <el-row :gutter="30" class="my-3">
                 <el-col :sm="24" :md="4" class="my-1">
                     <div>
@@ -75,26 +84,29 @@
                 </el-col>
             </el-row>
             <h5> <a @click="race.speed = 0, race.energy = 0, race.spirit = 0, race.mana = 0, race.hp = 0, race.regen = 0"> Pontos Restantes:</a> {{ totalPoints }}</h5>
-            <hr>
-            <el-row :gutter="30" class="my-3">
-                <el-form-item label="BIO">
-                    <el-input type="textarea" v-model="race.bio"></el-input>
-                </el-form-item>
-            </el-row>
-            <hr>
-            <el-row :gutter="30" class="my-3">
-                <el-form-item>
-                    <el-button type="primary" @click="onSubmit">Finish</el-button>
-                    <el-button 
-                        @click="race=newRace">Reset</el-button>
-                </el-form-item>
-            </el-row>
-        </el-form>
-</div>
+        </div>
+        <el-row :gutter="30" class="my-3">
+            <el-form-item label="BIO">
+                <el-input type="textarea" v-model="race.bio"></el-input>
+            </el-form-item>
+        </el-row>
+        -->
+    </div>
 </template>
 
 <script>
+    import AvatarImage from "../../shared/AvatarImage"
+    import CreatAttributes from '../../shared/CreatAttributes.vue'
+    import CreatBio from '../../shared/CreatBio.vue'
+    import CreatHeader from '../../shared/CreatHeader.vue'
+
     export default {
+        components: {
+            AvatarImage,
+            CreatAttributes,
+            CreatBio,
+            CreatHeader,
+        },
         data() {
             return {
                 race: {
@@ -141,20 +153,15 @@
                 console.log(localStorage.getItem('races'));
             },
             reloadUrl () {
-                this.race.urlArray = [];
+                /* this.race.urlArray = []; */
                 this.race.urlArray.push(this.race.url);
             }
+            
         },
         computed: {
             totalPoints () {
                 return (this.left_points - (this.race.speed + this.race.energy + this.race.spirit)) - ((this.race.hp/5) + (this.race.mana/5)) - (this.race.regen);                
             }
-        },  
+        },
     }
 </script>
-
-<style scoped>
-    .tag-label {
-        width: 130px;
-    }
-</style>

@@ -14,12 +14,13 @@ import Villains from './components/villains/Villains.vue'
 
 export const routes = [
     { path:'', name:'home', component: Home, title: 'Home', menu: true, icon: 'el-icon-s-home' },
+    { path:'/create', name:'create', component: CreateIndex, title: 'Create', menu: true, icon: 'el-icon-folder-add' },
     { 
         path:'/create',
         name:'create',
         component: CreateIndex,
         title: 'Create',
-        menu: true,
+        menu: false,
         icon: 'el-icon-s-order',
         children: [
             {

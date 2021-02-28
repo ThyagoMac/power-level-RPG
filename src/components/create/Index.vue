@@ -2,7 +2,7 @@
 <div>
     <el-tabs type="border-card" tab-position="">
     <el-tab-pane>
-        <span slot="label"><i class="el-icon-document"></i> New Character</span>
+        <span slot="label"><i class="el-icon-document"></i> New Char</span>
         <character />
     </el-tab-pane>
     <el-tab-pane>

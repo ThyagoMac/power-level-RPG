@@ -85,14 +85,14 @@
                 </el-table-column>
                 <el-table-column
                     v-if="itens[0].classe"
-                    prop="classe"
+                    prop="classe.name"
                     label="classe"
                     
                 >
                 </el-table-column>
                 <el-table-column
                     v-if="itens[0].race"
-                    prop="race"
+                    prop="race.name"
                     label="race"
                     
                 >

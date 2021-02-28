@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Table With the Villains</h1>
+        <p>component race.vue</p>
     </div>
 </template>
 

@@ -1,9 +1,10 @@
 import Home from './components/home/Home.vue';
-import Character from './components/create/character/Character.vue';
+/* import Character from './components/create/character/Character.vue';
 import Race from './components/create/race/Race.vue';
-import Class from './components/create/class/Class.vue';
+import Class from './components/create/class/Class.vue'; */
 import Play from './components/play/Play.vue';
 import CreateIndex from './components/create/Index.vue';
+import View from './components/view/Index.vue';
 /* 
 import CreateAccount from './components/create-heroine/CreateHeroine.vue';
 import CreateVillain from './components/create-villain/CreateVillain.vue';
@@ -15,7 +16,8 @@ import Villains from './components/villains/Villains.vue'
 export const routes = [
     { path:'', name:'home', component: Home, title: 'Home', menu: true, icon: 'el-icon-s-home' },
     { path:'/create', name:'create', component: CreateIndex, title: 'Create', menu: true, icon: 'el-icon-folder-add' },
-    { 
+    { path:'/view', name:'view', component: View, title: 'View', menu: true, icon: 'el-icon-folder' },
+    /* { 
         path:'/create',
         name:'create',
         component: CreateIndex,
@@ -50,7 +52,7 @@ export const routes = [
             
         ],
         
-    },
+    }, */
     { path:'/play', name:'play', component: Play, title: 'Play', menu: true, icon: 'el-icon-position' },
     { path:'*', component: Home, menu: false }
     

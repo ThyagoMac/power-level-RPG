@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>---Rum Game---</h1>
+        <p>component class.vue</p>
     </div>
 </template>
 

@@ -69,12 +69,21 @@
                     
                 >
                 </el-table-column>
-                <el-table-column
+                <!-- <el-table-column
                     v-if="itens[0].url"
                     prop="url"
-                    label="url"
+                    label="Url"
                     
+                > 
+                </el-table-column>-->
+                <el-table-column
+                    label="Url"
                 >
+                    <template slot-scope="scope">
+                        <a :href="scope.row.url">
+                            <el-tag size="medium">Img</el-tag>
+                        </a>
+                    </template>
                 </el-table-column>
                 <el-table-column
                     v-if="itens[0].has_rage"

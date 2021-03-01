@@ -3,6 +3,7 @@
     <el-tabs type="border-card" tab-position="">
     <el-tab-pane>
         <span slot="label"><i class="el-icon-document"></i> Chars</span>
+        <h3>Table</h3>
         <Table 
             :itens="characters"
         />
@@ -26,11 +27,12 @@
 
 <script>
     import Table from '../shared/Table'
+    /* import CardShow from '../shared/CardShow' */
     /* import Classes from './classes/Classes'
     import Races from './races/Races' */
 
     export default {
-        components: { Table, /* Characters,  Classes, Races */ },
+        components: { Table, /* CardShow */ /* Characters,  Classes, Races */ },
         data() {
             return {
                 characters: [],
